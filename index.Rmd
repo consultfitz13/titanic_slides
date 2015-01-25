@@ -25,6 +25,15 @@ knit        : slidify::knit2slides
 2. The crew had the worst survival rate proportionally (went down with the ship?)
 3. 3rd class also had a poor survival rate
 
+```{r echo=FALSE}
+library(doBy)
+titanic.df <- as.data.frame(Titanic)
+cdata <- summaryBy(Freq ~ Class + Survived, data=titanic.df, FUN=c(sum))
+colnames(cdata) <- c("Passenger Class", "Survived", "Count")
+print (cdata)
+
+```
+
 --- .class #id 
 
 ## Gender
@@ -33,6 +42,12 @@ knit        : slidify::knit2slides
 2. Women had a dramatically better survival rate than men
 3. Was it because women and children got on the lifeboats first?
 
+```{r echo=FALSE}
+cdata <- summaryBy(Freq ~ Sex + Survived, data=titanic.df, FUN=c(sum))
+colnames(cdata) <- c("Gender", "Survived", "Count")
+print (cdata)
+
+```
 
 --- .class #id 
 
@@ -42,6 +57,12 @@ knit        : slidify::knit2slides
 2. Children had a dramatically better survival rate than Adults
 3. Likely some correlation with the higher survival rate of women
 
+```{r echo=FALSE}
+cdata <- summaryBy(Freq ~ Age + Survived, data=titanic.df, FUN=c(sum))
+colnames(cdata) <- c("Age", "Survived", "Count")
+print (cdata)
+
+```
 
 --- .class #id 
 
